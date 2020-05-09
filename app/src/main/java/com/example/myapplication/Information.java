@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import com.example.myapplication.retrofit.models.UserInfo;
+
 public class Information extends AppCompatActivity {
     private EditText height;
     private EditText weight;
@@ -16,7 +18,7 @@ public class Information extends AppCompatActivity {
     private RadioButton add;
     private RadioButton newW;
     private RadioButton profy;
-    private String experiense;
+    private String experience;
     private String training;
 
     @Override
@@ -35,14 +37,14 @@ public class Information extends AppCompatActivity {
 
     public void onClick(View view) {
         if (view.getId() == R.id.but_save) {
-            User user = new User(name.getText().toString(), weight.getText().toString(),
-                    height.getText().toString(), goal,experiense,training);
-            System.out.print(user.toString());
+            UserInfo userInfo = new UserInfo(name.getText().toString(), weight.getText().toString(),
+                    height.getText().toString(), goal, experience,training, "");
+            System.out.print(userInfo.toString());
         } else {
-            User user = new User(name.getText().toString(), weight.getText().toString(),
-                    height.getText().toString(), goal, experiense,training);
+            UserInfo userInfo = new UserInfo(name.getText().toString(), weight.getText().toString(),
+                    height.getText().toString(), goal, experience,training, "");
             Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("user", user);
+            intent.putExtra("user", userInfo);
             startActivity(intent);
         }
 
@@ -66,12 +68,12 @@ public class Information extends AppCompatActivity {
 
             case R.id.rb_new:
                 if (checked) {
-                    experiense = "new";
+                    experience = "new";
                 }
                 break;
             case R.id.rb_prof:
                 if (checked) {
-                    experiense = "profy";
+                    experience = "profy";
                 }
                 break;
 

@@ -1,27 +1,32 @@
-package com.example.myapplication;
-
-
+package com.example.myapplication.retrofit.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User implements Serializable {
+public class UserInfo implements Serializable {
+
+    private String id;
     private String weight;
     private String height;
     private String goal;
     private String name;
     private String experience;
     private String training;
-    private ArrayList<String> parametrs = new ArrayList<>();
+    private ArrayList<String> parameters = new ArrayList<>();
 
-    public User(String name, String weight, String height, String goal, String experience,String training) {
-        parametrs.add(name);
+    public UserInfo() {
+        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+    }
+
+    public UserInfo(String name, String weight, String height, String goal, String experience, String training, String id) {
+        this.id = id;
+        parameters.add(name);
         this.training=training;
-        parametrs.add(weight);
-        parametrs.add(height);
-        parametrs.add(goal);
-        parametrs.add(experience);
-        parametrs.add(training);
+        parameters.add(weight);
+        parameters.add(height);
+        parameters.add(goal);
+        parameters.add(experience);
+        parameters.add(training);
         this.experience=experience;
         this.weight = weight;
         this.height = height;
@@ -30,7 +35,7 @@ public class User implements Serializable {
     }
 
     public boolean check(String parametr) {
-         return parametrs.contains(parametr);
+         return parameters.contains(parametr);
     }
 
     public String getName() {
@@ -65,9 +70,12 @@ public class User implements Serializable {
         this.height = height;
     }
 
+    public ArrayList<String> getParameters() {
+        return parameters;
+    }
 
-    public User() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+    public void setParameters(ArrayList<String> parameters) {
+        this.parameters = parameters;
     }
 
     public String getExperience() {
@@ -84,6 +92,14 @@ public class User implements Serializable {
 
     public void setTraining(String training) {
         this.training = training;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
 

@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
+import com.example.myapplication.retrofit.models.UserInfo;
 import com.example.myapplication.state.StateMachine;
 
 public class MainActivity extends FragmentActivity {
@@ -23,15 +24,15 @@ public class MainActivity extends FragmentActivity {
     StateMachine FMS;
     ViewPager pager;
     PagerAdapter pagerAdapter;
-    User user;
+    UserInfo userInfo;
     Button next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        user = (User) getIntent().getSerializableExtra("user");
+        userInfo = (UserInfo) getIntent().getSerializableExtra("user");
         setContentView(R.layout.activity_main);
-        FMS = new StateMachine(user);
+        FMS = new StateMachine(userInfo);
         pager = findViewById(R.id.pager);
         createStateMachine(MainActivity.this);
         pagerAdapter = new MyFragmentPageAdapter(getSupportFragmentManager(), 2, FMS);
@@ -41,7 +42,7 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onClick(View view) {
                 if(!FMS.isOnFinalState()) {
-                    if (user.getExperience().equals("new")) {
+                    if (userInfo.getExperience().equals("new")) {
                         pagerAdapter = new MyFragmentPageAdapter(getSupportFragmentManager(), 3, FMS);
                         pager.setAdapter(pagerAdapter);
                     } else {

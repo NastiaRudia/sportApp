@@ -1,6 +1,6 @@
 package com.example.myapplication.state;
 
-import com.example.myapplication.User;
+import com.example.myapplication.retrofit.models.UserInfo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,9 +22,9 @@ public class State {
 
     public Map<String, Integer> connect = new HashMap<>();
 
-    public int nextState(User user) {
+    public int nextState(UserInfo userInfo) {
         for (Map.Entry entry : connect.entrySet()) {
-            if (user.check(entry.getKey().toString()))
+            if (userInfo.check(entry.getKey().toString()))
                 return (int) entry.getValue();
         }
         return connect.get("next");

@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import com.example.myapplication.retrofit.models.UserInfo;
+
 public class Registration2 extends AppCompatActivity {
     private EditText height;
     private EditText weight;
@@ -25,11 +27,11 @@ public class Registration2 extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        User user=new User(name.getText().toString(),weight.getText().toString(),
-                height.getText().toString(),goal, experiense,"first") ;
-        System.out.print(user.toString());
+        UserInfo userInfo =new UserInfo(name.getText().toString(),weight.getText().toString(),
+                height.getText().toString(),goal, experiense,"first", "") ;
+        System.out.print(userInfo.toString());
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("user", user);
+        intent.putExtra("user", userInfo);
         startActivity(intent);
 
     }
